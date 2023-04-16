@@ -1,12 +1,12 @@
 const $body = document.querySelector("body");
-const API = "https://api/escuelajs.com/api/v1/products/?offset=5&limit=10";
+const API = "https://api.escuelajs.co/api/v1/products/?offset=5&limit=10";
 import logo from './assets/img.png';
 import './styles/styles.css';
 
 const main = async() => {
     const response = await fetch(API);
     const products = await response.json();
-    const output = products.map((product) => {
+    let output = products.map((product) => {
         return `
             <article class="Card">
                 <img src="${product.images[0]}"/>
@@ -15,7 +15,8 @@ const main = async() => {
                 </h2>
             </article>
         `;
-    }).jon('');
+    })
+    output = output.join("");
 
     const newItem = document.createElement("section");
     newItem.classList.add('Items');
@@ -26,8 +27,8 @@ const main = async() => {
     newImage.src = logo;
 
     newHeader.appendChild(newImage);
-    $body = appendChild(newHeader);
-    $body = appendChild(newItem);
+    $body.appendChild(newHeader);
+    $body.appendChild(newItem);
 };
 
 main();
